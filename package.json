@@ -1,0 +1,30 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Antonio Bellifemine <antonio.bellifemine@exploredigits.com",
+  "devDependencies": {
+    "dotenv-cli": "^8.0.0",
+    "@dotenvx/dotenvx": "^1.29.0",
+    "@faker-js/faker": "^9.4.0",
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^22.7.4",
+    "cross-env": "^7.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "scripts": {
+    "create:auth:file": "node -e \"require('fs').writeFileSync('auth.json', '')\"",
+    "install:deps": "yarn install && yarn install:playwright:browsers && yarn create:auth:file && yarn update:env:file",
+    "install:playwright:browsers": "yarn playwright install",
+    "test:ess:spt": "cross-env playwright test",
+    "test:admin": "cross-env PROJECT_NAME=lime-survey-admin yarn test:ess:spt --project=lime-survey-admin",
+    "test:user": "cross-env PROJECT_NAME=lime-survey-user yarn test:ess:spt --project=lime-survey-user",
+    "playwright:codegen:admin": "dotenv -e .env -- sh -c 'npx playwright codegen --viewport-size=1600,900 $ADMIN_BASE_URL --load-storage=auth.json'",
+    "playwright:codegen:user": "dotenv -e .env -- sh -c 'npx playwright codegen --viewport-size=1600,900 $BASE_URL'",
+    "playwright:ui:mode": "cross-env PROJECT_NAME=lime-survey-admin yarn playwright test --ui",
+    "update:env:file": "bash update_env.sh"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "commonjs",  // Use commonjs module system for Node.js
+      "lib": ["esnext", "dom"],  // Include modern JavaScript features and DOM for browser interactions
+      "types": ["node", "@playwright/test"],  // Include Node.js types
+      "moduleResolution": "node",  // Enable Node.js module resolution
+      "esModuleInterop": true,  // Interoperability for importing CommonJS modules
+      "skipLibCheck": true,  // Skip checking the types of libraries
+      "forceConsistentCasingInFileNames": true,
+    }
+}
